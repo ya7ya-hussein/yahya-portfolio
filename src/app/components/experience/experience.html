@@ -1,0 +1,24 @@
+<section id="experience" class="section fade-in">
+    <h2 class="section-title">Experience</h2>
+    <p class="section-subtitle">
+        A journey through innovation, building AI solutions that shape the future of technology.
+    </p>
+
+    <div class="experience-timeline">
+        <div *ngFor="let exp of experiences" class="experience-item glass-strong">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-title">{{ exp.title }}</h3>
+                    <p class="experience-company">{{ exp.company }}</p>
+                </div>
+                <span class="experience-date">{{ exp.startDate }} - {{ exp.endDate }}</span>
+            </div>
+            <p class="experience-description">
+                {{ exp.description }}
+            </p>
+            <div class="experience-skills">
+                <span *ngFor="let skill of exp.skills" class="skill-tag">{{ skill }}</span>
+            </div>
+        </div>
+    </div>
+</section>

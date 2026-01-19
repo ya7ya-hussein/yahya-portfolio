@@ -1,0 +1,27 @@
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">{{ personalInfo.name }}</h1>
+        <p class="hero-subtitle">{{ personalInfo.title }}</p>
+        <p class="hero-description">
+            {{ personalInfo.description }}
+        </p>
+        <button class="cta-button" (click)="scrollToProjects()">
+            <i class="fas fa-rocket"></i>
+            View My Work
+        </button>
+        <div class="social-links">
+            <a [href]="personalInfo.linkedin" target="_blank" class="social-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a [href]="personalInfo.github" target="_blank" class="social-link">
+                <i class="fab fa-github"></i>
+            </a>
+            <a [href]="'mailto:' + personalInfo.email" class="social-link">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>

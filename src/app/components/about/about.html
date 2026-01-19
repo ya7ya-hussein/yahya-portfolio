@@ -1,0 +1,32 @@
+<section id="about" class="section fade-in">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-subtitle">
+        Driven by curiosity and powered by innovation.
+    </p>
+    
+    <div class="about-grid">
+        <div class="about-image glass">
+            <img src="YahyaHussein.jpeg" 
+                 alt="{{ portfolioService.getPersonalInfo().name }}" />
+        </div>
+        <div class="about-text">
+            <h3>Building the Future with Embodied AI</h3>
+            <p>
+                AI Robotics Engineer & Embodied AI with a Bachelor's degree in Computer Science (Artificial Intelligence), specializing in deep reinforcement learning, autonomous navigation, and robotic systems. Developing advanced expertise in PPO-based reinforcement learning, PyTorch, NVIDIA Isaac Lab. Apply cutting-edge machine learning techniques to real-world robotic systems using ROS, computer vision, and object detection models. Proven track record in diverse technical roles, including Technical Assistant at Asia Pacific University, where I provided comprehensive IT support while maintaining optimal learning environments.
+            </p>
+            <p>
+               Demonstrated leadership abilities through volunteer work as Warehouse Leader at The Lost Food Project, managing weekly operations and coordinating volunteer teams, as well as mentoring fellow students as a Peer Leader in mathematics. Combining strong technical expertise in reinforcement learning and robotics with exceptional leadership and problem-solving abilities, I am committed to driving innovation in embodied AI and making meaningful contributions to both technology and community.
+            </p>
+        </div>
+    </div>
+
+    <div class="skills-grid">
+        <div *ngFor="let skill of skills" class="skill-card glass">
+            <div class="skill-icon">
+                <i [class]="skill.icon"></i>
+            </div>
+            <h3 class="skill-title">{{ skill.name }}</h3>
+            <p class="skill-description">{{ skill.description }}</p>
+        </div>
+    </div>
+</section>
