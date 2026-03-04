@@ -76,11 +76,49 @@ export class PortfolioService {
     {
       id: 2,
       title: 'Enhancing Mobile Robot Navigation using Deep Reinforcement Learning in Isaac Lab',
-      description: 'Developed an autonomous navigation system for differential-drive warehouse robots using Proximal Policy Optimization (PPO) in NVIDIA Isaac Lab, leveraging massively parallel training across 8,192+ simultaneous environments. Implemented a curriculum learning approach with a 71-dimensional observation space (2D LiDAR, kinematics, goal positioning) and a 3-layer neural network (~235K parameters) for continuous wheel velocity control. Successfully achieved collision-free point-to-point navigation in complex simulated warehouse environments (31m × 54m) with racks, aisles, and dynamic obstacles using PyTorch and SKRL for training.',
+      description: 'Developed an autonomous navigation system for differential-drive warehouse robots using Proximal Policy Optimization (PPO) in NVIDIA Isaac Lab, leveraging massively parallel training across 8,192+ simultaneous environments. Successfully achieved collision-free point-to-point navigation in complex simulated warehouse environments (31m × 54m) with racks, aisles, and dynamic obstacles using PyTorch and SKRL for training.',
       technologies: ['Python', 'PyTorch', 'NVIDIA Isaac Lab', 'Reinforcement Learning', 'PPO', 'Autonomous Systems', 'Robot Navigation', 'SKRL', 'Deep Learning'],
+      githubUrl: "https://github.com/ya7ya-hussein/yhbot_navigation",
       featured: true,
-      imageUrl: 'yhbot.jpeg'
-    }
+      imageUrl: 'demo.gif'
+    }, 
+    {
+      id: 3,
+      title: "Loan Default Prediction System",
+      description: "XGBoost-based loan default prediction system analyzing 255,347 applications with 16 engineered features including income, credit score, and employment history. Achieved 83.2% accuracy with balanced performance. Deployed via Streamlit for real-time risk assessment and automated loan decisions.",
+      technologies: [
+        "Python",
+        "XGBoost",
+        "Scikit-learn",
+        "Streamlit",
+        "Pandas",
+        "NumPy",
+        "Machine Learning",
+        "Data Science"
+      ],
+      imageUrl: "loan-default-prediction.png", 
+      githubUrl: "https://github.com/ya7ya-hussein/Loan-Default-Prediction-System-Using-XGBoost-Classifier",
+      featured: true
+    }, 
+    {
+      id: 4, 
+      title: "Bird AI Solution",
+      description: "A full-stack AI-powered application for real-time bird detection and species identification in aviation hangars. Features YOLO-based computer vision capable of identifying 200+ bird species, real-time video streaming with bird tracking, and actionable recommendations for hangar safety management.",
+      technologies: [
+        "React",
+        "Flask",
+        "YOLO",
+        "OpenCV",
+        "SQLite",
+        "Python",
+        "JavaScript",
+        "Tailwind CSS"
+      ],
+      imageUrl: "bird-ai-solution.png", 
+      githubUrl: "https://github.com/ya7ya-hussein/Bird-AI-Solution",
+      featured: true
+    }, 
+
   ];
 
   private projectsSubject = new BehaviorSubject<Project[]>(this.projects);
