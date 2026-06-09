@@ -10,7 +10,7 @@ export class PortfolioService {
   private personalInfo: PersonalInfo = {
     name: 'Yahya Hussein',
     title: 'AI Robotics Engineer | Embodied AI',
-    description: 'Specializing in deep reinforcement learning and autonomous navigation for robotic systems. Developing embodied AI solutions using PyTorch, NVIDIA Isaac Lab, ROS, and computer vision technologies.',
+    description: 'I build robots that perceive, decide, and act. Bridging the gap between simulation and the physical world through deep reinforcement learning and autonomous systems.',
     email: 'ya7ya-hussein@outlook.com',
     linkedin: 'https://www.linkedin.com/in/ya7ya-hussein/',
     github: 'https://github.com/ya7ya-hussein', 
@@ -66,15 +66,6 @@ export class PortfolioService {
   private projects: Project[] = [
     {
       id: 1,
-      title: 'YSU Malaysia Website',
-      description: 'Led full-stack development of YSU Malaysia\'s official website, serving the Yemeni Students Union community in Malaysia. Built a RESTful API backend using NestJS, Fastify, Prisma, and PostgreSQL with Sharp for image optimization. Developed the Angular frontend with a complete CMS and admin panel for managing news, events, gallery, branches, and team members.',
-      technologies: ['Angular', 'NestJS', 'TypeScript', 'Prisma', 'PostgreSQL', 'Fastify', 'RxJS', 'REST APIs', 'SCSS'],
-      liveUrl: 'https://ysumalaysia.org',
-      featured: true,
-      imageUrl: 'ysu_website.png'
-    },
-    {
-      id: 2,
       title: 'Enhancing Mobile Robot Navigation using Deep Reinforcement Learning in Isaac Lab',
       description: 'Developed an autonomous navigation system for differential-drive warehouse robots using Proximal Policy Optimization (PPO) in NVIDIA Isaac Lab, leveraging massively parallel training across 8,192+ simultaneous environments. Successfully achieved collision-free point-to-point navigation in complex simulated warehouse environments (31m × 54m) with racks, aisles, and dynamic obstacles using PyTorch and SKRL for training.',
       technologies: ['Python', 'PyTorch', 'NVIDIA Isaac Lab', 'Reinforcement Learning', 'PPO', 'Autonomous Systems', 'Robot Navigation', 'SKRL', 'Deep Learning'],
@@ -83,7 +74,7 @@ export class PortfolioService {
       imageUrl: 'demo.gif'
     }, 
     {
-      id: 3,
+      id: 2,
       title: "Loan Default Prediction System",
       description: "XGBoost-based loan default prediction system analyzing 255,347 applications with 16 engineered features including income, credit score, and employment history. Achieved 83.2% accuracy with balanced performance. Deployed via Streamlit for real-time risk assessment and automated loan decisions.",
       technologies: [
@@ -101,7 +92,7 @@ export class PortfolioService {
       featured: true
     }, 
     {
-      id: 4, 
+      id: 3, 
       title: "Bird AI Solution",
       description: "A full-stack AI-powered application for real-time bird detection and species identification in aviation hangars. Features YOLO-based computer vision capable of identifying 200+ bird species, real-time video streaming with bird tracking, and actionable recommendations for hangar safety management.",
       technologies: [
