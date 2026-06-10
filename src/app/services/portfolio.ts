@@ -71,7 +71,7 @@ export class PortfolioService {
       technologies: ['Python', 'PyTorch', 'NVIDIA Isaac Lab', 'Reinforcement Learning', 'PPO', 'Autonomous Systems', 'Robot Navigation', 'SKRL', 'Deep Learning'],
       githubUrl: "https://github.com/ya7ya-hussein/yhbot_navigation",
       featured: true,
-      imageUrl: 'demo.gif'
+      imageUrl: 'demo.webm'
     }, 
     {
       id: 2,

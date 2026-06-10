@@ -7,12 +7,21 @@
     <!-- Projects will be displayed here when added -->
     <div class="projects-grid">
         <div *ngFor="let project of projects$ | async" class="project-card glass-strong">
-            <div class="project-image">
-                <img *ngIf="project.imageUrl; else defaultIcon" [src]="project.imageUrl" [alt]="project.title">
-                <ng-template #defaultIcon>
-                    <i class="fas fa-code"></i>
-                </ng-template>
-            </div>
+        <div class="project-image">
+            <ng-container *ngIf="project.imageUrl; else defaultIcon">
+                <video *ngIf="project.imageUrl.endsWith('.webm') || project.imageUrl.endsWith('.mp4')"
+                    [src]="project.imageUrl"
+                    autoplay loop muted playsinline
+                    style="width:100%;height:100%;object-fit:cover">
+                </video>
+                <img *ngIf="!project.imageUrl.endsWith('.webm') && !project.imageUrl.endsWith('.mp4')"
+                    [src]="project.imageUrl" 
+                    [alt]="project.title">
+            </ng-container>
+            <ng-template #defaultIcon>
+                <i class="fas fa-code"></i>
+            </ng-template>
+        </div>
             <div class="project-content">
                 <h3 class="project-title">{{ project.title }}</h3>
                 <p class="project-description">{{ project.description }}</p>
