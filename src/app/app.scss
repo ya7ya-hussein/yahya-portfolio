@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2px;
+        padding: 6px 8px;
+    }
+    .nav-link {
+        font-size: 0.72rem;
+        padding: 4px 8px;
+        white-space: nowrap;
+    }
+}
+
+section {
+    scroll-margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+    section {
+        scroll-margin-top: 150px;
+    }
+}

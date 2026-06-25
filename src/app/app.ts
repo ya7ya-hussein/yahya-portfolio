@@ -37,10 +37,14 @@ export class App implements OnInit {
         const href = target.getAttribute('href');
         if (href) {
           const element = document.querySelector(href);
-          element?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          if (element) {
+            const navbarHeight = document.querySelector('.navbar')?.getBoundingClientRect().height || 80;
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+              top: elementPosition - navbarHeight - 16,
+              behavior: 'smooth'
+            });
+          }
         }
       }
     });
