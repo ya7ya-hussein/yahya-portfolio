@@ -1,7 +1,7 @@
 <section id="projects" class="section fade-in">
     <h2 class="section-title">Featured Projects</h2>
     <p class="section-subtitle">
-        Innovative solutions that showcase the power of AI and robotics in real-world applications.
+       End-to-end policies built with deep reinforcement learning and VLA architectures, trained and evaluated in simulation.
     </p>
 
     <!-- Projects will be displayed here when added -->
@@ -12,7 +12,7 @@
                 <video *ngIf="project.imageUrl.endsWith('.webm') || project.imageUrl.endsWith('.mp4')"
                     [src]="project.imageUrl"
                     autoplay loop muted playsinline
-                    style="width:100%;height:100%;object-fit:cover">
+                    style="width:100%;height:100%;object-fit:contain;background-color:#000">
                 </video>
                 <img *ngIf="!project.imageUrl.endsWith('.webm') && !project.imageUrl.endsWith('.mp4')"
                     [src]="project.imageUrl" 
@@ -24,7 +24,7 @@
         </div>
             <div class="project-content">
                 <h3 class="project-title">{{ project.title }}</h3>
-                <p class="project-description">{{ project.description }}</p>
+                <p *ngFor="let para of project.description.split('\n\n')" class="project-description">{{ para }}</p>
                 <div class="project-tech">
                     <span *ngFor="let tech of project.technologies" class="tech-tag">{{ tech }}</span>
                 </div>

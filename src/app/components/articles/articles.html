@@ -1,0 +1,38 @@
+<section id="articles" class="section fade-in">
+    <h2 class="section-title">Articles</h2>
+    <p class="section-subtitle">
+        Writing about robot learning, simulation tooling, and the state of embodied AI.
+    </p>
+
+    <div class="articles-list">
+        <div *ngFor="let article of articles" class="article-card glass-strong">
+            <div class="article-header">
+                <div class="article-meta">
+                    <span class="platform-badge">
+                        <i [class]="article.platformIcon"></i>
+                        {{ article.platform }}
+                    </span>
+                    <span class="article-date">{{ article.date }}</span>
+                </div>
+                <span *ngIf="!article.published" class="status-badge upcoming">Publishing Soon</span>
+            </div>
+
+            <h3 class="article-title">{{ article.title }}</h3>
+            <p class="article-description">{{ article.description }}</p>
+
+            <div class="article-footer">
+                <a *ngIf="article.published && article.url"
+                   [href]="article.url"
+                   target="_blank"
+                   class="article-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Read Article
+                </a>
+                <span *ngIf="!article.published" class="article-link-disabled">
+                    <i class="fas fa-clock"></i>
+                    Coming June 2026
+                </span>
+            </div>
+        </div>
+    </div>
+</section>

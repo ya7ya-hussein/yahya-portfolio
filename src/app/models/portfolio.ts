@@ -35,3 +35,24 @@ export interface PersonalInfo {
   github: string;
   location: string;
 }
+
+export interface Article {
+  id: number;
+  title: string;
+  platform: string;
+  platformIcon: string;
+  date: string;
+  description: string;
+  url: string;
+  published: boolean;
+}
+
+export interface Publication {
+  id: number;
+  title: string;
+  journal?: string;
+  date?: string;
+  description?: string;
+  url?: string;
+  comingSoon: boolean;
+}

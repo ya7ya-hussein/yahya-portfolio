@@ -3,12 +3,22 @@ import { HeroComponent } from './components/hero/hero';
 import { AboutComponent } from './components/about/about';
 import { ExperienceComponent } from './components/experience/experience';
 import { ProjectsComponent } from './components/projects/projects';
+import { ArticlesComponent } from './components/articles/articles';
+import { PublicationsComponent } from './components/publications/publications';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HeroComponent, AboutComponent, ExperienceComponent, ProjectsComponent],
+  imports: [
+    CommonModule,
+    HeroComponent,
+    AboutComponent,
+    ExperienceComponent,
+    ProjectsComponent,
+    ArticlesComponent,
+    PublicationsComponent
+  ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
@@ -20,7 +30,6 @@ export class App implements OnInit {
   }
 
   private initScrollEffects() {
-    // Smooth scrolling for navigation links
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       if (target.matches('a[href^="#"]')) {
@@ -36,20 +45,19 @@ export class App implements OnInit {
       }
     });
 
-    // Update active navigation link on scroll
     window.addEventListener('scroll', () => {
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
-      
+
       let currentSection = '';
-      
+
       sections.forEach(section => {
         const rect = section.getBoundingClientRect();
         if (rect.top <= 100 && rect.bottom >= 100) {
           currentSection = section.getAttribute('id') || '';
         }
       });
-      
+
       navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${currentSection}`) {
@@ -58,7 +66,6 @@ export class App implements OnInit {
       });
     });
 
-    // Fade in animation on scroll
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'

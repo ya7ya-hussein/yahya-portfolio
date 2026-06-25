@@ -1,0 +1,125 @@
+.articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.article-card {
+    padding: 36px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(30, 58, 138, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(30, 58, 138, 0.12);
+}
+
+.article-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.platform-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-accent);
+    background: rgba(30, 58, 138, 0.08);
+    padding: 4px 12px;
+    border-radius: 20px;
+
+    i {
+        font-size: 1rem;
+    }
+}
+
+.article-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.status-badge {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+}
+
+.status-badge.upcoming {
+    background: rgba(234, 179, 8, 0.12);
+    color: #b45309;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.article-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: var(--navy-blue);
+    line-height: 1.4;
+}
+
+.article-description {
+    color: var(--text-secondary);
+    font-size: 0.97rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.article-footer {
+    display: flex;
+    align-items: center;
+}
+
+.article-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-accent);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+
+    &:hover {
+        gap: 12px;
+    }
+}
+
+.article-link-disabled {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .article-card {
+        padding: 24px 20px;
+    }
+
+    .article-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
