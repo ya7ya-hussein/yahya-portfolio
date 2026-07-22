@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroComponent } from './components/hero/hero';
 import { AboutComponent } from './components/about/about';
-import { ExperienceComponent } from './components/experience/experience';
 import { ProjectsComponent } from './components/projects/projects';
 import { ArticlesComponent } from './components/articles/articles';
 import { PublicationsComponent } from './components/publications/publications';
@@ -14,7 +13,6 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     HeroComponent,
     AboutComponent,
-    ExperienceComponent,
     ProjectsComponent,
     ArticlesComponent,
     PublicationsComponent
@@ -52,16 +50,13 @@ export class App implements OnInit {
     window.addEventListener('scroll', () => {
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
-
       let currentSection = '';
-
       sections.forEach(section => {
         const rect = section.getBoundingClientRect();
         if (rect.top <= 100 && rect.bottom >= 100) {
           currentSection = section.getAttribute('id') || '';
         }
       });
-
       navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${currentSection}`) {

@@ -1,22 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from '../../services/portfolio';
-import { Skill } from '../../models/portfolio';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './about.html',
   styleUrls: ['./about.scss']
 })
-export class AboutComponent implements OnInit {
-  skills: Skill[] = [];
-  portfolioService = new PortfolioService();
-
-  constructor(private portfolioServiceInjected: PortfolioService) {}
-
-  ngOnInit(): void {
-    this.skills = this.portfolioServiceInjected.getSkills();
-  }
-}
+export class AboutComponent {}

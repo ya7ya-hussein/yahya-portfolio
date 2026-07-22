@@ -1,87 +1,97 @@
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 60px;
-    align-items: center;
-    margin-bottom: 60px;
+    gap: 56px;
+    align-items: start;
 }
 
 .about-image {
     border-radius: 20px;
     overflow: hidden;
-    position: relative;
+    position: sticky;
+    top: 100px;
     box-shadow: 0 12px 40px rgba(30, 58, 138, 0.15);
     border: 1px solid rgba(30, 58, 138, 0.1);
 }
 
 .about-image img {
     width: 100%;
-    height: 400px;
+    height: 440px;
     object-fit: cover;
+    object-position: top center;
+    display: block;
     transition: transform 0.3s ease;
 }
 
 .about-image:hover img {
-    transform: scale(1.05);
-}
-
-.about-text h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: var(--navy-blue);
+    transform: scale(1.04);
 }
 
 .about-text p {
     color: var(--text-secondary);
-    margin-bottom: 20px;
-    font-size: 1.05rem;
+    margin-bottom: 22px;
+    font-size: 1.08rem;
+    line-height: 1.85;
 }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+.about-text p:last-child {
+    margin-bottom: 0;
 }
 
-.skill-card {
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(30, 58, 138, 0.08);
+/* Tablet ≤ 960px */
+@media (max-width: 960px) {
+    .about-grid {
+        gap: 36px;
+    }
+
+    .about-image img {
+        height: 360px;
+    }
+
+    .about-image {
+        position: static;
+    }
 }
 
-.skill-card:hover {
-    transform: translateY(-10px);
-}
-
-.skill-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.skill-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.skill-description {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
+/* Mobile ≤ 768px — single column, image above text */
 @media (max-width: 768px) {
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 28px;
     }
 
-    .skills-grid {
-        grid-template-columns: 1fr;
+    .about-image {
+        position: static;
+        border-radius: 16px;
+    }
+
+    .about-image img {
+        height: 300px;
+        object-position: top center;
+    }
+
+    .about-text p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        margin-bottom: 18px;
+    }
+}
+
+/* Small mobile ≤ 480px */
+@media (max-width: 480px) {
+    .about-image img {
+        height: 260px;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+}
+
+/* Very small ≤ 360px */
+@media (max-width: 360px) {
+    .about-image img {
+        height: 220px;
     }
 }

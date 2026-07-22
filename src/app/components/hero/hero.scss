@@ -1,48 +1,83 @@
 .hero {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 24px;
     position: relative;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 820px;
+    width: 100%;
     animation: fadeInUp 1s ease-out;
+    padding-top: 60px;
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.2rem, 5.5vw, 5rem);
     font-weight: 700;
     margin-bottom: 20px;
     background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    line-height: 1.15;
 }
 
 .hero-subtitle {
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.85rem);
     color: var(--text-secondary);
     margin-bottom: 30px;
 }
 
 .hero-description {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
     color: var(--text-secondary);
-    margin-bottom: 40px;
-    max-width: 600px;
+    margin-bottom: 44px;
+    max-width: 620px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.8;
+}
+
+/* CV text badge inside the social link circle */
+.cv-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: inherit;
+    line-height: 1;
+    user-select: none;
 }
 
 .scroll-indicator {
     position: absolute;
-    bottom: 30px;
+    bottom: 28px;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
     color: var(--text-accent);
+}
+
+@media (max-width: 640px) {
+    .hero-content {
+        padding-top: 72px;
+    }
+
+    .scroll-indicator {
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero {
+        padding: 0 18px;
+    }
+
+    .hero-content {
+        padding-top: 80px;
+    }
 }

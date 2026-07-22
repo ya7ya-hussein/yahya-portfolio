@@ -1,14 +1,3 @@
-export interface Experience {
-  id: number;
-  title: string;
-  company: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-  skills: string[];
-}
-
 export interface Project {
   id: number;
   title: string;
@@ -16,14 +5,9 @@ export interface Project {
   technologies: string[];
   imageUrl?: string;
   githubUrl?: string;
-  liveUrl?: string;
+  projectUrl?: string;
   featured: boolean;
-}
-
-export interface Skill {
-  name: string;
-  icon: string;
-  description: string;
+  upcoming?: boolean;
 }
 
 export interface PersonalInfo {
@@ -33,6 +17,7 @@ export interface PersonalInfo {
   email: string;
   linkedin: string;
   github: string;
+  website: string;
   location: string;
 }
 
@@ -45,6 +30,7 @@ export interface Article {
   description: string;
   url: string;
   published: boolean;
+  upcoming?: boolean;
 }
 
 export interface Publication {
@@ -55,4 +41,5 @@ export interface Publication {
   description?: string;
   url?: string;
   comingSoon: boolean;
+  upcoming?: boolean;
 }

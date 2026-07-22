@@ -1,48 +1,47 @@
 <section id="projects" class="section fade-in">
     <h2 class="section-title">Featured Projects</h2>
     <p class="section-subtitle">
-       End-to-end policies built with deep reinforcement learning and VLA architectures, trained and evaluated in simulation.
+        End-to-end policies built with deep reinforcement learning and VLA architectures, trained and evaluated in simulation.
     </p>
 
-    <!-- Projects will be displayed here when added -->
     <div class="projects-grid">
         <div *ngFor="let project of projects$ | async" class="project-card glass-strong">
-        <div class="project-image">
-            <ng-container *ngIf="project.imageUrl; else defaultIcon">
-                <video *ngIf="project.imageUrl.endsWith('.webm') || project.imageUrl.endsWith('.mp4')"
-                    [src]="project.imageUrl"
-                    autoplay loop muted playsinline
-                    style="width:100%;height:100%;object-fit:contain;background-color:#000">
-                </video>
-                <img *ngIf="!project.imageUrl.endsWith('.webm') && !project.imageUrl.endsWith('.mp4')"
-                    [src]="project.imageUrl" 
-                    [alt]="project.title">
-            </ng-container>
-            <ng-template #defaultIcon>
-                <i class="fas fa-code"></i>
-            </ng-template>
-        </div>
+            <div class="project-image">
+                <ng-container *ngIf="project.imageUrl; else defaultIcon">
+                    <video *ngIf="project.imageUrl.endsWith('.webm') || project.imageUrl.endsWith('.mp4')"
+                        [src]="project.imageUrl"
+                        autoplay loop muted playsinline
+                        style="width:100%;height:100%;object-fit:contain;background-color:#000">
+                    </video>
+                    <img *ngIf="!project.imageUrl.endsWith('.webm') && !project.imageUrl.endsWith('.mp4')"
+                        [src]="project.imageUrl"
+                        [alt]="project.title">
+                </ng-container>
+                <ng-template #defaultIcon>
+                    <i class="fas fa-code"></i>
+                </ng-template>
+                <span *ngIf="project.upcoming" class="project-upcoming-badge">Upcoming</span>
+            </div>
             <div class="project-content">
                 <h3 class="project-title">{{ project.title }}</h3>
                 <p *ngFor="let para of project.description.split('\n\n')" class="project-description">{{ para }}</p>
                 <div class="project-tech">
                     <span *ngFor="let tech of project.technologies" class="tech-tag">{{ tech }}</span>
                 </div>
-                <div class="project-links">
+                <div *ngIf="!project.upcoming" class="project-links">
                     <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" class="project-link">
                         <i class="fab fa-github"></i>
                         Code
                     </a>
-                    <a *ngIf="project.liveUrl" [href]="project.liveUrl" target="_blank" class="project-link">
+                    <a *ngIf="project.projectUrl" [href]="project.projectUrl" target="_blank" class="project-link">
                         <i class="fas fa-external-link-alt"></i>
-                        Live Demo
+                        Project
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Empty state when no projects -->
     <div *ngIf="(projects$ | async)?.length === 0" class="empty-projects">
         <div class="empty-state glass-strong">
             <i class="fas fa-rocket empty-icon"></i>

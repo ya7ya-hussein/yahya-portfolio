@@ -4,35 +4,47 @@
         Writing about robot learning, simulation tooling, and the state of embodied AI.
     </p>
 
+    <!-- Filter row -->
+    <div class="articles-filter">
+        <button
+            *ngFor="let filter of filters"
+            class="filter-btn"
+            [class.active]="activeFilter === filter"
+            (click)="setFilter(filter)">
+            {{ filter }}
+        </button>
+    </div>
+
+    <!-- Article list -->
     <div class="articles-list">
-        <div *ngFor="let article of articles" class="article-card glass-strong">
-            <div class="article-header">
-                <div class="article-meta">
-                    <span class="platform-badge">
-                        <i [class]="article.platformIcon"></i>
-                        {{ article.platform }}
-                    </span>
-                    <span class="article-date">{{ article.date }}</span>
+        <ng-container *ngFor="let article of filteredArticles">
+
+            <!-- Published article with live link -->
+            <a *ngIf="article.published && article.url && !article.upcoming"
+               [href]="article.url"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="article-row">
+                <div class="article-thumb" [ngClass]="'article-thumb--' + article.platform.toLowerCase()">
+                    <i [class]="article.platformIcon"></i>
                 </div>
-                <span *ngIf="!article.published" class="status-badge upcoming">Publishing Soon</span>
+                <span class="article-title">{{ article.title }}</span>
+                <span class="article-platform-label">{{ article.platform }}</span>
+                <span class="article-date">{{ article.date }}</span>
+                <i class="fas fa-arrow-up-right-from-square article-arrow"></i>
+            </a>
+
+            <!-- Upcoming / unpublished article -->
+            <div *ngIf="!article.published || !article.url || article.upcoming"
+                 class="article-row article-row--disabled">
+                <div class="article-thumb" [ngClass]="'article-thumb--' + article.platform.toLowerCase()">
+                    <i [class]="article.platformIcon"></i>
+                </div>
+                <span class="article-title">{{ article.title }}</span>
+                <span class="badge badge--upcoming">Upcoming</span>
+                <span class="article-date">{{ article.date }}</span>
             </div>
 
-            <h3 class="article-title">{{ article.title }}</h3>
-            <p class="article-description">{{ article.description }}</p>
-
-            <div class="article-footer">
-                <a *ngIf="article.published && article.url"
-                   [href]="article.url"
-                   target="_blank"
-                   class="article-link">
-                    <i class="fas fa-external-link-alt"></i>
-                    Read Article
-                </a>
-                <span *ngIf="!article.published" class="article-link-disabled">
-                    <i class="fas fa-clock"></i>
-                    Coming June 2026
-                </span>
-            </div>
-        </div>
+        </ng-container>
     </div>
 </section>

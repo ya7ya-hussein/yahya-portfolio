@@ -1,32 +1,15 @@
 <section id="about" class="section fade-in">
     <h2 class="section-title">About Me</h2>
-    <p class="section-subtitle">
-        I believe physical AI will reshape the world. I'm building toward that.
-    </p>
 
     <div class="about-grid">
         <div class="about-image glass">
-            <img src="YahyaHussein.jpeg"
-                 alt="{{ portfolioService.getPersonalInfo().name }}" />
+            <img src="YahyaHussein.jpeg" alt="Yahya Alsabahi" />
         </div>
         <div class="about-text">
-            <h3>The gap between simulation and the real world is where I work.</h3>
-            <p>
-                Most AI lives in servers. I'm interested in the kind that has to deal with a wet floor, a drifting sensor, and an obstacle that wasn't on the map. Embodied AI, robots that perceive, decide, and act in the physical world, is the hardest version of the intelligence problem, and the one worth solving.
-            </p>
-            <p>
-                I design end-to-end robot learning pipelines, from building simulation environments and shaping reward functions in Isaac Lab, through training policies with deep RL, behavior cloning, and diffusion models, to deploying on physical hardware through sim-to-real transfer. The goal is never just a policy that works in simulation. It is one that survives contact with the real world. I follow where the field is heading too: VLA architectures, world models, and the generalist robot policies that will eventually handle any task, in any environment, on any robot.
-            </p>
-        </div>
-    </div>
-
-    <div class="skills-grid">
-        <div *ngFor="let skill of skills" class="skill-card glass">
-            <div class="skill-icon">
-                <i [class]="skill.icon"></i>
-            </div>
-            <h3 class="skill-title">{{ skill.name }}</h3>
-            <p class="skill-description">{{ skill.description }}</p>
+            <p>I work on the problems that still do not have good answers in robot learning.</p>
+            <p>How do you build a policy that works across any embodiment, not just the robot it was trained on? How do you give a robot the ability to think through a scene it has never seen before committing to a move? How do you let a robot practice inside its own imagination before acting in the real world?</p>
+            <p>These are the open problems I build toward every day. My work sits at the intersection of deep RL and VLA fine-tuning. I work across the full End-to-End pipeline: from data collection to fine-tuning VLA models, including GR00T N1.7, π0/π0.5, and OpenVLA, with a solid understanding of their transformer, diffusion, and flow matching architectures.</p>
+            <p>If you are working on generalist robot policies, visuomotor policies, or embodied reasoning, I would love to connect.</p>
         </div>
     </div>
 </section>

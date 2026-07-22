@@ -11,11 +11,22 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./articles.scss']
 })
 export class ArticlesComponent implements OnInit {
-  articles: Article[] = [];
+  allArticles: Article[] = [];
+  filteredArticles: Article[] = [];
+  activeFilter = 'All';
+  filters = ['All', 'LinkedIn', 'Medium'];
 
   constructor(private portfolioService: PortfolioService) {}
 
   ngOnInit(): void {
-    this.articles = this.portfolioService.getArticles();
+    this.allArticles = this.portfolioService.getArticles();
+    this.filteredArticles = this.allArticles;
+  }
+
+  setFilter(filter: string): void {
+    this.activeFilter = filter;
+    this.filteredArticles = filter === 'All'
+      ? this.allArticles
+      : this.allArticles.filter(a => a.platform === filter);
   }
 }
