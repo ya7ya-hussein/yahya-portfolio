@@ -1,22 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio';
 import { Project } from '../../models/portfolio';
-import { CommonModule } from '@angular/common';
+import { FadeInDirective } from '../../directives/fade-in';
+
+interface ProjectView extends Project {
+  paragraphs: string[];
+  isVideo: boolean;
+  hasMedia: boolean;
+}
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule],
+  imports: [FadeInDirective],
   templateUrl: './projects.html',
   styleUrls: ['./projects.scss']
 })
-export class ProjectsComponent implements OnInit {
-  projects$: Observable<Project[]> = new Observable();
+export class ProjectsComponent {
+  private readonly portfolio = inject(PortfolioService);
 
-  constructor(private portfolioService: PortfolioService) {}
-
-  ngOnInit(): void {
-    this.projects$ = this.portfolioService.getProjects();
-  }
+  /** Precomputed once so the template does no work during change detection. */
+  protected readonly projects: ProjectView[] = this.portfolio
+    .getFeaturedProjects()
+    .map(project => ({
+      ...project,
+      paragraphs: project.description.split(/\n{2,}/).map(p => p.trim()).filter(Boolean),
+      isVideo: /\.(mp4|webm)$/i.test(project.mediaUrl ?? ''),
+      hasMedia: Boolean(project.mediaUrl)
+    }));
 }

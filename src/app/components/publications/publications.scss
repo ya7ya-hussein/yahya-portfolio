@@ -1,41 +1,94 @@
 .publications-container {
-    max-width: 600px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 640px;
+    margin-inline: auto;
     text-align: center;
 }
 
+/* ─── Placeholder ─── */
 .coming-soon-card {
-    padding: 64px 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(30, 58, 138, 0.08);
+    padding: clamp(40px, 7vw, 64px) clamp(24px, 4vw, 40px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--hairline);
+}
 
-    h3 {
-        font-size: 1.4rem;
-        font-weight: 600;
-        margin-bottom: 16px;
-        color: var(--navy-blue);
-    }
+.coming-soon-card h3 {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    font-weight: 600;
+    color: var(--navy-blue);
+    margin-bottom: 16px;
+}
 
-    p {
-        color: var(--text-secondary);
-        font-size: 1rem;
-        line-height: 1.7;
-        max-width: 400px;
-        margin: 0 auto;
-    }
+.coming-soon-card p {
+    max-width: 420px;
+    margin-inline: auto;
+    color: var(--text-secondary);
+    font-size: clamp(0.95rem, 1.2vw, 1rem);
+    line-height: 1.7;
 }
 
 .coming-soon-icon {
-    font-size: 3rem;
-    margin-bottom: 24px;
+    font-size: clamp(2.4rem, 5vw, 3rem);
+    margin-bottom: 22px;
     background: var(--primary-gradient);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-@media (max-width: 768px) {
-    .coming-soon-card {
-        padding: 48px 24px;
-    }
+/* ─── Real publications (used once the array fills) ─── */
+.publications-list {
+    display: grid;
+    gap: 20px;
+    text-align: left;
+}
+
+.publication-card {
+    padding: clamp(22px, 3vw, 30px);
+    border-radius: var(--radius-lg);
+}
+
+.publication-title {
+    font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.publication-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+}
+
+.publication-description {
+    color: var(--text-secondary);
+    font-size: 0.93rem;
+    line-height: 1.65;
+    margin-bottom: 18px;
+}
+
+.publication-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 15px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-pill);
+    background: var(--lighter-bg);
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: color 0.25s ease, border-color 0.25s ease,
+                background 0.25s ease, transform 0.25s ease;
+}
+
+.publication-link:hover {
+    color: var(--text-accent);
+    border-color: var(--text-accent);
+    background: var(--light-blue);
+    transform: translateY(-2px);
 }

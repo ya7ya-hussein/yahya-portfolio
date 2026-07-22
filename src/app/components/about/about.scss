@@ -1,26 +1,26 @@
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 56px;
+    grid-template-columns: minmax(240px, 1fr) 2fr;
+    gap: clamp(28px, 4vw, 56px);
     align-items: start;
 }
 
 .about-image {
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     position: sticky;
-    top: 100px;
-    box-shadow: 0 12px 40px rgba(30, 58, 138, 0.15);
-    border: 1px solid rgba(30, 58, 138, 0.1);
+    top: calc(var(--scroll-offset) + 8px);
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-lg);
 }
 
 .about-image img {
     width: 100%;
-    height: 440px;
+    aspect-ratio: 3 / 4;
+    max-height: 460px;
     object-fit: cover;
     object-position: top center;
-    display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s ease;
 }
 
 .about-image:hover img {
@@ -29,69 +29,35 @@
 
 .about-text p {
     color: var(--text-secondary);
-    margin-bottom: 22px;
-    font-size: 1.08rem;
+    font-size: clamp(1rem, 1.2vw, 1.08rem);
     line-height: 1.85;
+    margin-bottom: 20px;
 }
 
 .about-text p:last-child {
     margin-bottom: 0;
 }
 
-/* Tablet ≤ 960px */
-@media (max-width: 960px) {
-    .about-grid {
-        gap: 36px;
-    }
-
-    .about-image img {
-        height: 360px;
-    }
-
-    .about-image {
-        position: static;
-    }
-}
-
-/* Mobile ≤ 768px — single column, image above text */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 28px;
     }
 
     .about-image {
         position: static;
-        border-radius: 16px;
+        max-width: 340px;
+        margin-inline: auto;
     }
 
     .about-image img {
-        height: 300px;
-        object-position: top center;
-    }
-
-    .about-text p {
-        font-size: 1.05rem;
-        line-height: 1.8;
-        margin-bottom: 18px;
+        aspect-ratio: 4 / 3;
+        max-height: 320px;
     }
 }
 
-/* Small mobile ≤ 480px */
 @media (max-width: 480px) {
-    .about-image img {
-        height: 260px;
-    }
-
-    .about-text p {
-        font-size: 1rem;
-        line-height: 1.75;
-    }
-}
-
-/* Very small ≤ 360px */
-@media (max-width: 360px) {
-    .about-image img {
-        height: 220px;
+    .about-image {
+        max-width: 100%;
+        border-radius: var(--radius-md);
     }
 }

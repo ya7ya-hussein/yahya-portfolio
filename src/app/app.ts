@@ -1,16 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  inject,
+  signal
+} from '@angular/core';
 import { HeroComponent } from './components/hero/hero';
 import { AboutComponent } from './components/about/about';
 import { ProjectsComponent } from './components/projects/projects';
 import { ArticlesComponent } from './components/articles/articles';
 import { PublicationsComponent } from './components/publications/publications';
-import { CommonModule } from '@angular/common';
+import { PortfolioService } from './services/portfolio';
+
+interface NavItem {
+  id: string;
+  label: string;
+}
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
     HeroComponent,
     AboutComponent,
     ProjectsComponent,
@@ -20,68 +30,71 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
-export class App implements OnInit {
-  title = 'yahya-portfolio';
+export class App implements AfterViewInit, OnDestroy {
+  private readonly portfolio = inject(PortfolioService);
 
-  ngOnInit() {
-    this.initScrollEffects();
+  protected readonly personalInfo = this.portfolio.getPersonalInfo();
+  protected readonly currentYear = new Date().getFullYear();
+  protected readonly websiteLabel = this.personalInfo.website
+    .replace(/^https?:\/\//, '')
+    .replace(/\/$/, '');
+
+  protected readonly navItems: NavItem[] = [
+    { id: 'home',         label: 'Home' },
+    { id: 'about',        label: 'About' },
+    { id: 'projects',     label: 'Projects' },
+    { id: 'articles',     label: 'Articles' },
+    { id: 'publications', label: 'Publications' }
+  ];
+
+  protected readonly activeSection = signal<string>('home');
+
+  private sections: HTMLElement[] = [];
+  private frame = 0;
+
+  ngAfterViewInit(): void {
+    this.sections = this.navItems
+      .map(item => document.getElementById(item.id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    window.addEventListener('scroll', this.scheduleUpdate, { passive: true });
+    window.addEventListener('resize', this.scheduleUpdate, { passive: true });
+    this.updateActiveSection();
   }
 
-  private initScrollEffects() {
-    document.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      if (target.matches('a[href^="#"]')) {
-        e.preventDefault();
-        const href = target.getAttribute('href');
-        if (href) {
-          const element = document.querySelector(href);
-          if (element) {
-            const navbarHeight = document.querySelector('.navbar')?.getBoundingClientRect().height || 80;
-            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({
-              top: elementPosition - navbarHeight - 16,
-              behavior: 'smooth'
-            });
-          }
-        }
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.scheduleUpdate);
+    window.removeEventListener('resize', this.scheduleUpdate);
+    cancelAnimationFrame(this.frame);
+  }
+
+  /** Coalesces scroll bursts into at most one measurement per frame. */
+  private readonly scheduleUpdate = (): void => {
+    cancelAnimationFrame(this.frame);
+    this.frame = requestAnimationFrame(() => this.updateActiveSection());
+  };
+
+  private updateActiveSection(): void {
+    if (this.sections.length === 0) return;
+
+    const trigger = 140;
+    let active = this.sections[0].id;
+
+    for (const section of this.sections) {
+      if (section.getBoundingClientRect().top <= trigger) {
+        active = section.id;
       }
-    });
+    }
 
-    window.addEventListener('scroll', () => {
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('.nav-link');
-      let currentSection = '';
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 100 && rect.bottom >= 100) {
-          currentSection = section.getAttribute('id') || '';
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-          link.classList.add('active');
-        }
-      });
-    });
+    // The final section can never reach the trigger line, so pin it at the bottom.
+    const atBottom =
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 2;
 
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    if (atBottom) {
+      active = this.sections[this.sections.length - 1].id;
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    setTimeout(() => {
-      document.querySelectorAll('.fade-in').forEach(el => {
-        observer.observe(el);
-      });
-    }, 100);
+    this.activeSection.set(active);
   }
 }

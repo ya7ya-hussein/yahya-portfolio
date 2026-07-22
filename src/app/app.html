@@ -1,17 +1,37 @@
-<div class="bg-animation"></div>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<nav class="navbar glass">
+<div class="bg-animation" aria-hidden="true"></div>
+
+<nav class="navbar" aria-label="Section navigation">
     <ul class="nav-menu">
-        <li class="nav-home"><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#articles" class="nav-link">Articles</a></li>
-        <li><a href="#publications" class="nav-link">Publications</a></li>
+        @for (item of navItems; track item.id) {
+            <li [class.nav-item--home]="item.id === 'home'">
+                <a class="nav-link"
+                   [href]="'#' + item.id"
+                   [class.active]="activeSection() === item.id"
+                   [attr.aria-current]="activeSection() === item.id ? 'location' : null">
+                    {{ item.label }}
+                </a>
+            </li>
+        }
     </ul>
 </nav>
 
-<app-hero></app-hero>
-<app-about></app-about>
-<app-projects></app-projects>
-<app-articles></app-articles>
-<app-publications></app-publications>
+<main id="main">
+    <app-hero />
+    <app-about />
+    <app-projects />
+    <app-articles />
+    <app-publications />
+</main>
+
+<footer class="site-footer">
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </a>
+    <p class="footer-meta">
+        © {{ currentYear }} {{ personalInfo.name }}
+        <span aria-hidden="true">·</span>
+        <a class="footer-link" [href]="personalInfo.website">{{ websiteLabel }}</a>
+    </p>
+</footer>

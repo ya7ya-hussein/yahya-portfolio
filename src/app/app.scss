@@ -1,23 +1,170 @@
-@media (max-width: 768px) {
+:host {
+    display: block;
+}
+
+/* ─── Skip link ─── */
+.skip-link {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 2000;
+    transform: translate(-50%, -200%);
+    padding: 10px 22px;
+    border-radius: 0 0 12px 12px;
+    background: var(--navy-blue);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+    transform: translate(-50%, 0);
+}
+
+/* ─── Navigation ───
+   All navbar styling lives here, next to its markup in app.html.
+   Nothing in styles.scss touches these selectors. */
+.navbar {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    z-index: 1000;
+    transform: translateX(-50%);
+    max-width: calc(100vw - 24px);
+    padding: 10px clamp(18px, 2.5vw, 28px);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-md);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 2.2vw, 30px);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nav-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-link {
+    position: relative;
+    display: block;
+    padding: 4px 2px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+    white-space: nowrap;
+    transition: color 0.25s ease;
+}
+
+/* Underline indicator: no layout shift on activate */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent-gradient);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-accent);
+}
+
+.nav-link.active {
+    color: var(--text-accent);
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+/* ─── Footer ─── */
+.site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 0 var(--section-pad-x) clamp(36px, 5vw, 56px);
+    text-align: center;
+}
+
+.back-to-top {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--secondary-gradient);
+    color: #fff;
+    font-size: 1.05rem;
+    text-decoration: none;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.footer-meta {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--text-accent);
+    text-decoration: underline;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+    .navbar {
+        top: 10px;
+        max-width: calc(100vw - 16px);
+        padding: 9px 18px;
+    }
+
+    /* The footer arrow covers "back to top", so Home can go */
+    .nav-item--home {
+        display: none;
+    }
+
+    .back-to-top {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (max-width: 380px) {
+    .navbar {
+        padding: 8px 14px;
+    }
+
     .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 2px;
-        padding: 6px 8px;
-    }
-    .nav-link {
-        font-size: 0.72rem;
-        padding: 4px 8px;
-        white-space: nowrap;
-    }
-}
-
-section {
-    scroll-margin-top: 80px;
-}
-
-@media (max-width: 768px) {
-    section {
-        scroll-margin-top: 150px;
+        gap: 12px;
     }
 }

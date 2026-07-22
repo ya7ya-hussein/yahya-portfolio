@@ -1,30 +1,51 @@
 <section id="home" class="hero">
     <div class="hero-content">
+        <p class="hero-location">
+            <i class="fas fa-location-dot" aria-hidden="true"></i>
+            <span>{{ personalInfo.location }}</span>
+        </p>
+
         <h1 class="hero-title">{{ personalInfo.name }}</h1>
         <p class="hero-subtitle">{{ personalInfo.title }}</p>
-        <p class="hero-description">
-            {{ personalInfo.description }}
-        </p>
-        <button class="cta-button" (click)="scrollToProjects()">
-            <i class="fas fa-rocket"></i>
-            View My Work
-        </button>
-        <div class="social-links">
-            <a [href]="personalInfo.linkedin" target="_blank" class="social-link">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a [href]="personalInfo.github" target="_blank" class="social-link">
-                <i class="fab fa-github"></i>
-            </a>
-            <a [href]="'mailto:' + personalInfo.email" class="social-link">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="/assets/cv.pdf" target="_blank" rel="noopener noreferrer" class="social-link">
-                <span class="cv-label">CV</span>
-            </a>
-        </div>
+        <p class="hero-description">{{ personalInfo.description }}</p>
+
+        <a href="#projects" class="cta-button">
+            <i class="fas fa-rocket" aria-hidden="true"></i>
+            <span>View My Work</span>
+        </a>
+
+        <ul class="social-links">
+            <li>
+                <a class="social-link" [href]="personalInfo.linkedin"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="LinkedIn profile">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a class="social-link" [href]="personalInfo.github"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="GitHub profile">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a class="social-link" [href]="'mailto:' + personalInfo.email"
+                   [attr.aria-label]="'Email ' + personalInfo.email">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a class="social-link" href="/cv.pdf"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Download CV (PDF)">
+                    <span class="cv-label" aria-hidden="true">CV</span>
+                </a>
+            </li>
+        </ul>
     </div>
-    <div class="scroll-indicator">
-        <i class="fas fa-chevron-down"></i>
-    </div>
+
+    <a href="#about" class="scroll-indicator" aria-label="Scroll to About">
+        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </a>
 </section>

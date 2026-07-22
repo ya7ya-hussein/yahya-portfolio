@@ -1,50 +1,71 @@
-<section id="articles" class="section fade-in">
+<section id="articles" class="section" appFadeIn>
     <h2 class="section-title">Articles</h2>
     <p class="section-subtitle">
         Writing about robot learning, simulation tooling, and the state of embodied AI.
     </p>
 
-    <!-- Filter row -->
-    <div class="articles-filter">
-        <button
-            *ngFor="let filter of filters"
-            class="filter-btn"
-            [class.active]="activeFilter === filter"
-            (click)="setFilter(filter)">
-            {{ filter }}
-        </button>
+    <div class="articles-filter" role="group" aria-label="Filter articles by platform">
+        @for (filter of filters; track filter) {
+            <button type="button"
+                    class="filter-btn"
+                    [class.active]="activeFilter() === filter"
+                    [attr.aria-pressed]="activeFilter() === filter"
+                    (click)="setFilter(filter)">
+                {{ filter }}
+            </button>
+        }
     </div>
 
-    <!-- Article list -->
-    <div class="articles-list">
-        <ng-container *ngFor="let article of filteredArticles">
+    <ul class="articles-list">
+        @for (article of visibleArticles(); track article.id) {
+            <li>
+                @if (article.url) {
+                    <a class="article-row"
+                       [href]="article.url"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <span class="article-thumb"
+                              [class.article-thumb--linkedin]="article.platform === 'LinkedIn'"
+                              [class.article-thumb--medium]="article.platform === 'Medium'">
+                            <i [class]="article.platformIcon" aria-hidden="true"></i>
+                        </span>
 
-            <!-- Published article with live link -->
-            <a *ngIf="article.published && article.url && !article.upcoming"
-               [href]="article.url"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="article-row">
-                <div class="article-thumb" [ngClass]="'article-thumb--' + article.platform.toLowerCase()">
-                    <i [class]="article.platformIcon"></i>
-                </div>
-                <span class="article-title">{{ article.title }}</span>
-                <span class="article-platform-label">{{ article.platform }}</span>
-                <span class="article-date">{{ article.date }}</span>
-                <i class="fas fa-arrow-up-right-from-square article-arrow"></i>
-            </a>
+                        <span class="article-body">
+                            <span class="article-title">{{ article.title }}</span>
+                            <span class="article-description">{{ article.description }}</span>
+                            <span class="article-meta">
+                                <span>{{ article.platform }}</span>
+                                <span aria-hidden="true">·</span>
+                                <span>{{ article.date }}</span>
+                            </span>
+                        </span>
 
-            <!-- Upcoming / unpublished article -->
-            <div *ngIf="!article.published || !article.url || article.upcoming"
-                 class="article-row article-row--disabled">
-                <div class="article-thumb" [ngClass]="'article-thumb--' + article.platform.toLowerCase()">
-                    <i [class]="article.platformIcon"></i>
-                </div>
-                <span class="article-title">{{ article.title }}</span>
-                <span class="badge badge--upcoming">Upcoming</span>
-                <span class="article-date">{{ article.date }}</span>
-            </div>
+                        <i class="fas fa-arrow-up-right-from-square article-arrow"
+                           aria-hidden="true"></i>
+                    </a>
+                } @else {
+                    <div class="article-row article-row--upcoming">
+                        <span class="article-thumb"
+                              [class.article-thumb--linkedin]="article.platform === 'LinkedIn'"
+                              [class.article-thumb--medium]="article.platform === 'Medium'">
+                            <i [class]="article.platformIcon" aria-hidden="true"></i>
+                        </span>
 
-        </ng-container>
-    </div>
+                        <span class="article-body">
+                            <span class="article-title">{{ article.title }}</span>
+                            <span class="article-description">{{ article.description }}</span>
+                            <span class="article-meta">
+                                <span>{{ article.platform }}</span>
+                                <span aria-hidden="true">·</span>
+                                <span>{{ article.date }}</span>
+                                <span class="badge badge--upcoming">Upcoming</span>
+                            </span>
+                        </span>
+                    </div>
+                }
+            </li>
+        } @empty {
+            <li class="articles-empty">No articles on this platform yet.</li>
+        }
+    </ul>
 </section>

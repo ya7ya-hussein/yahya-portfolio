@@ -1,18 +1,52 @@
-<section id="publications" class="section fade-in">
+<section id="publications" class="section section--fill" appFadeIn>
     <h2 class="section-title">Publications</h2>
     <p class="section-subtitle">
         Research contributions to embodied AI and robot learning.
     </p>
 
     <div class="publications-container">
-        <div class="coming-soon-card glass-strong">
-            <div class="coming-soon-icon">
-                <i class="fas fa-flask"></i>
+        @if (publications.length > 0) {
+            <ul class="publications-list">
+                @for (publication of publications; track publication.id) {
+                    <li class="publication-card glass-strong">
+                        <h3 class="publication-title">{{ publication.title }}</h3>
+
+                        @if (publication.venue || publication.date) {
+                            <p class="publication-meta">
+                                @if (publication.venue) { <span>{{ publication.venue }}</span> }
+                                @if (publication.venue && publication.date) {
+                                    <span aria-hidden="true">·</span>
+                                }
+                                @if (publication.date) { <span>{{ publication.date }}</span> }
+                            </p>
+                        }
+
+                        @if (publication.description) {
+                            <p class="publication-description">{{ publication.description }}</p>
+                        }
+
+                        @if (publication.url) {
+                            <a class="publication-link" [href]="publication.url"
+                               target="_blank" rel="noopener noreferrer"
+                               [attr.aria-label]="'Read ' + publication.title">
+                                <i class="fas fa-file-lines" aria-hidden="true"></i>
+                                <span>Read paper</span>
+                            </a>
+                        }
+                    </li>
+                }
+            </ul>
+        } @else {
+            <div class="coming-soon-card glass-strong">
+                <div class="coming-soon-icon">
+                    <i class="fas fa-flask" aria-hidden="true"></i>
+                </div>
+                <h3>Publications Coming Soon</h3>
+                <p>
+                    Working toward my first research publication in robot learning and
+                    embodied AI. Details will be posted here when ready.
+                </p>
             </div>
-            <h3>Publications Coming Soon</h3>
-            <p>
-                Working toward my first research publication in robot learning and embodied AI. Details will be posted here when ready.
-            </p>
-        </div>
+        }
     </div>
 </section>

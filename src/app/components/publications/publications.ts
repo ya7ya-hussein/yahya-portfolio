@@ -1,21 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio';
 import { Publication } from '../../models/portfolio';
-import { CommonModule } from '@angular/common';
+import { FadeInDirective } from '../../directives/fade-in';
 
 @Component({
   selector: 'app-publications',
   standalone: true,
-  imports: [CommonModule],
+  imports: [FadeInDirective],
   templateUrl: './publications.html',
   styleUrls: ['./publications.scss']
 })
-export class PublicationsComponent implements OnInit {
-  publications: Publication[] = [];
+export class PublicationsComponent {
+  private readonly portfolio = inject(PortfolioService);
 
-  constructor(private portfolioService: PortfolioService) {}
-
-  ngOnInit(): void {
-    this.publications = this.portfolioService.getPublications();
-  }
+  /** Empty today — the template renders the placeholder card until the first paper. */
+  protected readonly publications: Publication[] = this.portfolio.getPublications();
 }

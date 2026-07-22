@@ -1,32 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio';
 import { Article } from '../../models/portfolio';
-import { CommonModule } from '@angular/common';
+import { FadeInDirective } from '../../directives/fade-in';
+
+type Filter = 'All' | 'LinkedIn' | 'Medium';
 
 @Component({
   selector: 'app-articles',
   standalone: true,
-  imports: [CommonModule],
+  imports: [FadeInDirective],
   templateUrl: './articles.html',
   styleUrls: ['./articles.scss']
 })
-export class ArticlesComponent implements OnInit {
-  allArticles: Article[] = [];
-  filteredArticles: Article[] = [];
-  activeFilter = 'All';
-  filters = ['All', 'LinkedIn', 'Medium'];
+export class ArticlesComponent {
+  private readonly portfolio = inject(PortfolioService);
 
-  constructor(private portfolioService: PortfolioService) {}
+  protected readonly filters: Filter[] = ['All', 'LinkedIn', 'Medium'];
+  protected readonly activeFilter = signal<Filter>('All');
 
-  ngOnInit(): void {
-    this.allArticles = this.portfolioService.getArticles();
-    this.filteredArticles = this.allArticles;
-  }
+  private readonly allArticles: Article[] = this.portfolio.getArticles();
 
-  setFilter(filter: string): void {
-    this.activeFilter = filter;
-    this.filteredArticles = filter === 'All'
+  protected readonly visibleArticles = computed(() => {
+    const filter = this.activeFilter();
+    return filter === 'All'
       ? this.allArticles
-      : this.allArticles.filter(a => a.platform === filter);
+      : this.allArticles.filter(article => article.platform === filter);
+  });
+
+  protected setFilter(filter: Filter): void {
+    this.activeFilter.set(filter);
   }
 }
