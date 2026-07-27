@@ -5,12 +5,16 @@
 <nav class="navbar" aria-label="Section navigation">
     <ul class="nav-menu">
         @for (item of navItems; track item.id) {
-            <li [class.nav-item--home]="item.id === 'home'">
+            <li>
                 <a class="nav-link"
+                   [class.nav-link--home]="item.id === 'home'"
                    [href]="'#' + item.id"
                    [class.active]="activeSection() === item.id"
                    [attr.aria-current]="activeSection() === item.id ? 'location' : null">
-                    {{ item.label }}
+                    @if (item.id === 'home') {
+                        <i class="fas fa-house nav-link__icon" aria-hidden="true"></i>
+                    }
+                    <span class="nav-link__label">{{ item.label }}</span>
                 </a>
             </li>
         }
@@ -29,9 +33,10 @@
     <a href="#home" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-chevron-up" aria-hidden="true"></i>
     </a>
+
     <p class="footer-meta">
-        © {{ currentYear }} {{ personalInfo.name }}
-        <span aria-hidden="true">·</span>
+        <span>© {{ currentYear }} {{ personalInfo.name }}</span>
+        <span class="footer-sep" aria-hidden="true">·</span>
         <a class="footer-link" [href]="personalInfo.website">{{ websiteLabel }}</a>
     </p>
 </footer>

@@ -62,9 +62,11 @@
 }
 
 .cv-label {
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-indent: 0.03em;   /* cancels the trailing letter-space so it optically centres */
+    text-transform: uppercase;
     line-height: 1;
     color: inherit;
     user-select: none;
@@ -80,12 +82,58 @@
     animation: bounce 2s infinite;
 }
 
+/* ─── Phones ───
+   Tightened so the full hero, including the chevron, fits within
+   one 667px-tall screen instead of overflowing past the fold. */
 @media (max-width: 600px) {
     .hero {
-        padding-bottom: 76px;
+        padding-top: 84px;
+        padding-bottom: 64px;
+    }
+
+    .hero-location {
+        margin-bottom: 12px;
+        padding: 5px 14px;
+        font-size: 0.82rem;
+    }
+
+    .hero-title {
+        font-size: clamp(1.95rem, 8.6vw, 2.4rem);
+        line-height: 1.12;
+        margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 14px;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.62;
+        margin-bottom: 24px;
+    }
+
+    .social-links {
+        margin-top: 22px;
     }
 
     .scroll-indicator {
-        bottom: 20px;
+        bottom: 18px;
+    }
+}
+
+/* ─── Short viewports (landscape phones, small laptop windows) ───
+   Stop forcing full height; the chevron isn't worth the space. */
+@media (max-height: 620px) {
+    .hero {
+        min-height: auto;
+        padding-top: calc(var(--scroll-offset) + 8px);
+        padding-bottom: 56px;
+    }
+
+    .scroll-indicator {
+        display: none;
     }
 }

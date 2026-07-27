@@ -7,7 +7,7 @@ export class PortfolioService {
   private readonly personalInfo: PersonalInfo = {
     name: 'Yahya Alsabahi',
     title: 'Embodied AI Research Engineer',
-    description: 'I work on the problems that still do not have good answers in robot learning. How do you build a policy that works across any embodiment? How do you give a robot the ability to think through a scene it has never seen before committing to a move? How do you let a robot practice inside its own imagination before acting in the real world?',
+    description: 'Training on data is not enough. The real breakthrough is when a robot can reason through a problem it has never seen and find a better way to solve it',
     email: 'ya7ya-hussein@outlook.com',
     linkedin: 'https://www.linkedin.com/in/ya7ya-hussein/',
     github: 'https://github.com/ya7ya-hussein',
@@ -19,10 +19,8 @@ export class PortfolioService {
     {
       id: 1,
       title: 'KOVA: End-to-End Deep RL Policy for Mobile Robot Complete Coverage Path Planning',
-      description: `KOVA is a PPO-based deep reinforcement learning agent trained in NVIDIA Isaac Lab to achieve complete coverage of any room without maps, hardcoded paths, or prior environment knowledge. Built for the iRobot Create 3, the policy reads a 12,369-dimensional observation space combining multi-scale egocentric coverage maps across four zoom levels, 360 degree LiDAR, and a 10-step action history, giving it simultaneous awareness of nearby obstacles and long-range frontiers at every step.
-
-KOVA reduces redundant path overlap by 3 to 4 times compared to traditional CPP algorithms, validated across six real-world environments against Heydari et al. (2021) benchmarks. Traditional approaches revisit between 24.8% and 32.7% of ground they have already covered. KOVA brings that down to 7.9% to 9.9%. At inference time, the policy generalizes to rooms it has never seen, relying entirely on real-time sensor observations with no scripts and no prebuilt maps.`,
-      technologies: ['Python', 'PyTorch', 'NVIDIA Isaac Lab', 'PPO', 'Deep Reinforcement Learning', 'SKRL', 'ROS 2', 'Reward Shaping', 'Sim-to-Real'],
+      description: `Trained a DRL agent in Isaac Lab to cover every reachable cell in cluttered, unknown environments, outperforming traditional CPP algorithms by 3x - 4x in path efficiency, with no maps, no hardcoded paths, and no prior knowledge of the environment.`,
+      technologies: ['Deep Reinforcement Learning', 'CPP', 'NVIDIA Isaac Lab', 'PyTorch',  'Python', 'SKRL', 'PPO', 'ROS 2'],
       githubUrl: 'https://github.com/ya7ya-hussein/kova',
       featured: true,
       mediaUrl: 'Kova_RL.mp4'
@@ -30,19 +28,17 @@ KOVA reduces redundant path overlap by 3 to 4 times compared to traditional CPP 
     {
       id: 2,
       title: 'YHBot: Deep RL Policy for Mobile Robot Navigation and Obstacle Avoidance in Dynamic Environments',
-      description: `YHBot is a PPO-based deep reinforcement learning policy for autonomous navigation of differential-drive robots in dynamic environments. Trained across 8,192 parallel simulation environments over 8 million steps in NVIDIA Isaac Lab using PyTorch and SKRL, the agent learned to navigate complex warehouse settings (31m x 54m) with racks, aisles, and unpredictable moving obstacles, with no demonstrations, no hardcoded rules, and no prior knowledge of the environment.
-
-The policy achieves 95% navigation success while avoiding both static and dynamic obstacles, adapting in real time using only raw sensor observations at each step. There are no traditional pathfinding algorithms in the loop. No A*, no Dijkstra, no prebuilt maps. Every navigation decision flows end-to-end from sensor input to motor command through the trained policy alone.`,
-      technologies: ['Python', 'PyTorch', 'NVIDIA Isaac Lab', 'PPO', 'Deep Reinforcement Learning', 'SKRL', 'Dynamic Obstacle Avoidance', 'Autonomous Navigation'],
+      description: `Achieved 95% navigation success in dynamic environments with unpredictable moving obstacles, by training an end-to-end deep RL pipeline that adapts to both static and dynamic obstacles in real time using raw sensor observations alone, without traditional pathfinding algorithms.`,
+      technologies: ['Deep Reinforcement Learning', 'SKRL', 'PPO', 'NVIDIA Isaac Lab', 'PyTorch', 'Python', 'Dynamic Obstacle Avoidance', 'Autonomous Navigation'],
       githubUrl: 'https://github.com/ya7ya-hussein/yhbot_navigation',
       featured: true,
       mediaUrl: 'demo.webm'
     },
     {
       id: 3,
-      title: 'Autonomous UAV Aircraft Surface Inspection',
-      description: 'PPO-based deep RL policy for complete autonomous surface inspection of a Boeing 737-800 in a GPS-denied indoor hangar. Built in NVIDIA Isaac Sim and Isaac Lab with a CNN encoder. Targets above 90% surface coverage and above 95% defect detection rate, with a goal of reducing inspection time by more than 70% compared to manual processes.',
-      technologies: ['NVIDIA Isaac Sim', 'NVIDIA Isaac Lab', 'PPO', 'CNN', 'Deep Reinforcement Learning', 'UAV', 'Python', 'PyTorch'],
+      title: 'RELAY: RL Post-Trained VLA Policy for Humanoid Manipulation Resumption from Arbitrary Mid-Task States',
+      description: 'Fine-tuning a vision language action model with RL post-training to finish long-horizon manipulation tasks that someone else already started. Every benchmark starts the robot from a clean scene, which hides how badly policies break on the partial, mid-task states that real deployment actually produces, with no new teleoperation data, no fixed start configuration, and no scripted task plan.',
+      technologies: ['Deep Reinforcement Learning', 'VLA' ,'RL Post-Training', 'Humanoid Manipulation', 'Imitation Learning', 'PyTorch', 'Python' ],
       featured: true,
       upcoming: true
     }
@@ -54,8 +50,11 @@ The policy achieves 95% navigation success while avoiding both static and dynami
       title: 'The End-to-End Robot Learning Pipeline: The Technical Breakdown',
       platform: 'LinkedIn',
       platformIcon: 'fab fa-linkedin',
-      date: 'July 2026',
-      description: 'An 8-part technical series covering 150+ papers across the full robot learning pipeline.'
+      date: 'Jul 2026',
+      publishedOn: '2026-07-08',
+      description: 'An 8-part technical series covering 150+ papers across the full robot learning pipeline', 
+      imageUrl: 'article-robot-learning-pipeline.png',
+      url: 'https://www.linkedin.com/pulse/end-to-end-robot-learning-pipeline-technical-yahya-hussein-nosnf'
     },
     {
       id: 2,
@@ -63,9 +62,98 @@ The policy achieves 95% navigation success while avoiding both static and dynami
       platform: 'Medium',
       platformIcon: 'fab fa-medium',
       date: 'March 2026',
-      description: 'A comparative survey of 8 tools for building photorealistic, physics-ready simulation environments for robot training, covering World Labs Marble, SceneSmith, Infinigen, SAGE-10k, and more.',
+      publishedOn: '2026-02-22',
+      description: 'A comparative survey of 8 tools for building photorealistic, physics-ready simulation environments for robot training',
+      imageUrl: 'article-3d-world-toolkit.webp',
       url: 'https://medium.com/@yahya712865444/the-complete-3d-world-building-toolkit-for-embodied-ai-2026-94b37275c3ef'
-    }
+    }, 
+    {
+      id: 3,
+      title: 'Embodied Reasoning: Why It Is Still an Open Problem',
+      platform: 'LinkedIn',
+      platformIcon: 'fab fa-linkedin',
+      date: 'Aug 2026',
+      publishedOn: '2026-08-04',
+    }, 
+    {
+      id: 4,
+      title: 'Data Collection: Where Robot Intelligence Begins',
+      platform: 'Medium',
+      platformIcon: 'fab fa-medium',
+      date: 'Jul 2026',
+      publishedOn: '2026-07-07',
+      imageUrl: 'Data_collection.png',
+      url: 'https://medium.com/@ya7ya-hussein/data-collection-where-robot-intelligence-begins-c67eb88d15df?sharedUserId=ya7ya-hussein'
+    }, 
+    {
+      id: 5,
+      title: 'Generative Models: How Robots Learn to Commit to One Valid Action',
+      platform: 'Medium',
+      platformIcon: 'fab fa-medium',
+      date: 'Jul 2026',
+      publishedOn: '2026-07-07',
+      imageUrl: 'Generative_models .png',
+      url: 'https://medium.com/@ya7ya-hussein/generative-models-how-robots-learn-to-commit-to-one-valid-action-837e3a9f7a79?sharedUserId=ya7ya-hussein'
+    }, 
+    {
+      id: 6,
+      title: 'Sequence Modeling and Transformers: How Robots Remember What They Just Did',
+      platform: 'Medium',
+      platformIcon: 'fab fa-medium',
+      date: 'Jul 2026',
+      publishedOn: '2026-07-07',
+      imageUrl: 'Sequence_Transformers.png',
+      url: 'https://medium.com/@ya7ya-hussein/sequence-modeling-and-transformers-how-robots-remember-what-they-just-did-7811a101a953?sharedUserId=ya7ya-hussein'
+    }, 
+    {
+      id: 7,
+      title: 'Vision-Language-Action Models: Giving Robots Internet-Scale World Knowledge',
+      platform: 'Medium',
+      platformIcon: 'fab fa-medium',
+      date: 'Jul 2026',
+      publishedOn: '2026-07-07',
+      imageUrl: 'VLAs.png',
+      url: 'https://medium.com/@ya7ya-hussein/vision-language-action-models-giving-robots-internet-scale-world-knowledge-8d017f75495d?sharedUserId=ya7ya-hussein'
+    }, 
+    {
+      id: 8,
+      title: 'Generalist Policies: One Brain for Many Robot Bodies',
+      platform: 'Medium',
+      platformIcon: 'fab fa-medium',
+      date: 'Jul 2026',
+      publishedOn: '2026-07-07',
+      url: 'https://medium.com/@ya7ya-hussein/generalist-policies-one-brain-for-many-robot-bodies-5d1d382bafc7?sharedUserId=ya7ya-hussein'
+    }, 
+    {
+      id: 9,
+      title: 'Beyond Imitation: Reinforcement Learning and Embodied Reasoning',
+      platform: 'Medium',
+      platformIcon: 'fab fa-medium',
+      date: 'Jul 2026',
+      publishedOn: '2026-07-07',
+      imageUrl: 'DRLs.png',
+      url: 'https://medium.com/@ya7ya-hussein/beyond-imitation-reinforcement-learning-and-embodied-reasoning-2d0c55d06eeb?sharedUserId=ya7ya-hussein'
+    }, 
+    {
+      id: 10,
+      title: 'World Models: How Robots Learn to Practice in Their Own Imagination',
+      platform: 'Medium',
+      platformIcon: 'fab fa-medium',
+      date: 'Jul 2026',
+      publishedOn: '2026-07-07',
+      imageUrl: 'world_models.png',
+      url: 'https://medium.com/@ya7ya-hussein/world-models-how-robots-learn-to-practice-in-their-own-imagination-a24c2c05dd10?sharedUserId=ya7ya-hussein'
+    },
+    {
+      id: 11,
+      title: 'Sim-to-Real and Evaluation: Does Any of This Actually Work?',
+      platform: 'Medium',
+      platformIcon: 'fab fa-medium',
+      date: 'Jul 2026',
+      publishedOn: '2026-07-07',
+      imageUrl: 'Evaluation.png',
+      url: 'https://medium.com/@ya7ya-hussein/sim-to-real-and-evaluation-does-any-of-this-actually-work-ea491f60e3ed?sharedUserId=ya7ya-hussein'
+    }, 
   ];
 
   /** Empty until the first paper lands; the section renders a placeholder. */
@@ -84,8 +172,10 @@ The policy achieves 95% navigation success while avoiding both static and dynami
   }
 
   getArticles(): Article[] {
-    return [...this.articles];
-  }
+  return [...this.articles].sort((a, b) =>
+    b.publishedOn.localeCompare(a.publishedOn)
+  );
+}
 
   getPublications(): Publication[] {
     return [...this.publications];

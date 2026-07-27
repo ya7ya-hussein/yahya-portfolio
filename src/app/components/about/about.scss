@@ -1,25 +1,25 @@
 .about-grid {
     display: grid;
-    grid-template-columns: minmax(240px, 1fr) 2fr;
+    grid-template-columns: minmax(240px, 330px) 1fr;
     gap: clamp(28px, 4vw, 56px);
-    align-items: start;
+    align-items: center;
 }
 
 .about-image {
     border-radius: var(--radius-lg);
     overflow: hidden;
-    position: sticky;
-    top: calc(var(--scroll-offset) + 8px);
     border: 1px solid var(--hairline);
     box-shadow: var(--shadow-lg);
 }
 
+/* One portrait ratio at every screen size. The source photo is
+   roughly 3:4, so this frames it edge to edge with no cropping —
+   the same framing that already looks right on desktop. */
 .about-image img {
     width: 100%;
     aspect-ratio: 3 / 4;
-    max-height: 460px;
     object-fit: cover;
-    object-position: top center;
+    object-position: center top;
     transition: transform 0.35s ease;
 }
 
@@ -38,6 +38,7 @@
     margin-bottom: 0;
 }
 
+/* ─── Single column: photo above text, same ratio, capped width ─── */
 @media (max-width: 900px) {
     .about-grid {
         grid-template-columns: 1fr;
@@ -45,19 +46,19 @@
 
     .about-image {
         position: static;
-        max-width: 340px;
+        width: min(280px, 62vw);
         margin-inline: auto;
-    }
-
-    .about-image img {
-        aspect-ratio: 4 / 3;
-        max-height: 320px;
     }
 }
 
 @media (max-width: 480px) {
     .about-image {
-        max-width: 100%;
         border-radius: var(--radius-md);
+    }
+
+    .about-text p {
+        font-size: 1rem;
+        line-height: 1.78;
+        margin-bottom: 18px;
     }
 }

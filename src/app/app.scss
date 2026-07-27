@@ -33,7 +33,7 @@
     z-index: 1000;
     transform: translateX(-50%);
     max-width: calc(100vw - 24px);
-    padding: 10px clamp(18px, 2.5vw, 28px);
+    padding: 10px clamp(16px, 2.5vw, 28px);
     border-radius: var(--radius-pill);
     background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(22px) saturate(160%);
@@ -57,7 +57,9 @@
 
 .nav-link {
     position: relative;
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 4px 2px;
     color: var(--text-secondary);
     text-decoration: none;
@@ -65,6 +67,13 @@
     font-size: clamp(0.8rem, 1.1vw, 0.95rem);
     white-space: nowrap;
     transition: color 0.25s ease;
+}
+
+/* Home collapses to an icon on phones; hidden everywhere else */
+.nav-link__icon {
+    display: none;
+    font-size: 0.95rem;
+    line-height: 1;
 }
 
 /* Underline indicator: no layout shift on activate */
@@ -124,9 +133,20 @@
     box-shadow: var(--shadow-xl);
 }
 
+/* Flex gap survives Angular's whitespace stripping — plain
+   spaces between inline elements do not. */
 .footer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px 8px;
     color: var(--text-secondary);
     font-size: 0.85rem;
+}
+
+.footer-sep {
+    opacity: 0.55;
 }
 
 .footer-link {
@@ -145,12 +165,15 @@
     .navbar {
         top: 10px;
         max-width: calc(100vw - 16px);
-        padding: 9px 18px;
+        padding: 9px 16px;
     }
 
-    /* The footer arrow covers "back to top", so Home can go */
-    .nav-item--home {
+    .nav-link--home .nav-link__label {
         display: none;
+    }
+
+    .nav-link--home .nav-link__icon {
+        display: block;
     }
 
     .back-to-top {
@@ -159,9 +182,9 @@
     }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 400px) {
     .navbar {
-        padding: 8px 14px;
+        padding: 8px 13px;
     }
 
     .nav-menu {

@@ -31,15 +31,14 @@ export interface Article {
   title: string;
   platform: ArticlePlatform;
   platformIcon: string;
+  /** Human-readable, shown on the card, e.g. 'July 2026'. */
   date: string;
-  description: string;
-  /**
-   * Single source of truth for publication state.
-   * A live URL means published; absent or empty means upcoming.
-   */
+  /** Machine-sortable ISO date 'YYYY-MM-DD'. Drives ordering; never displayed. */
+  publishedOn: string;
+  description?: string;
+  imageUrl?: string;
   url?: string;
 }
-
 export interface Publication {
   id: number;
   title: string;
